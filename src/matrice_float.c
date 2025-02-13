@@ -44,14 +44,23 @@ void afficher_matrice(matrice_t* mat){
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 matrice_t* produit_matrice(matrice_t* mat1, matrice_t* mat2){
-    matrice_t* res = allouer_matrice(mat1->n, mat2->m);
+    if(mat1 == NULL){
+        printf("Erreur : Matrice 1 non allouée\n");
+        return NULL;
+    }
+    if(mat2 == NULL){
+        printf("Erreur : Matrice 2 non allouée\n");
+        return NULL;
+    }
     if(mat1->m != mat2->n){
         printf("Impossible de multiplier les matrices\n");
         return NULL;
     }
+    matrice_t* res = allouer_matrice(mat1->n, mat2->m);
     for(int i = 0; i < mat1->n; i++){
         for(int j = 0; j < mat2->m; j++){
             res->tab[i][j] = 0;
@@ -63,10 +72,15 @@ matrice_t* produit_matrice(matrice_t* mat1, matrice_t* mat2){
     return res;
 }
 
-void liberer_matrice(matrice_t* mat){
-    for(int i =0; i < mat-> n; i++){
-        free(mat->tab[i]);
+void liberer_matrice(matrice_t** mat){
+    if(mat == NULL){
+        printf("Erreur : Matrice non allouee\n");
+        return;
     }
-    free(mat->tab);
+    for(int i =0; i < (*mat)-> n; i++){
+        free((*mat)->tab[i]);
+    }
+    free((*mat)->tab);
     free(mat);
+    (*mat) = NULL;
 }
