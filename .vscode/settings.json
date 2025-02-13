@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.embeddedhtml": "html",
+		"*.css": "tailwindcss",
+		"matrice_float.h": "c"
+	}
+}
