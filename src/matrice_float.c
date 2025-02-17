@@ -44,7 +44,7 @@ void afficher_matrice(matrice_t* mat){
         }
         printf("\n");
     }
-    printf("\n");
+    printf("fin afficher matrice\n");
 }
 
 matrice_t* produit_matrice(matrice_t* mat1, matrice_t* mat2){
@@ -81,6 +81,6 @@ void liberer_matrice(matrice_t** mat){
         free((*mat)->tab[i]);
     }
     free((*mat)->tab);
-    free(mat);
+    free(*mat);
     (*mat) = NULL;
 }
